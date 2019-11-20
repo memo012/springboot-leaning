@@ -1,1 +1,35 @@
 
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/jwtShiro?useSSL=FALSE&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+
+#############################
+###### mybatis-plus配置
+#############################
+mybatis-plus:
+  mapper-locations: classpath:mappering/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: com.adminsys.Entity
+  global-config:
+    db-config:
+      table-underline: true
+      db-type: mysql
+
+######################################
+########### 控制台打印SQL语句
+######################################
+logging:
+  level:
+    root: warn
+    com.adminsys.dao: trace
+  pattern:
+    console: '%p%m%n'
+server:
+  port: 8081

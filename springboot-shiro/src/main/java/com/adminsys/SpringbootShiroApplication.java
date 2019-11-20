@@ -1,9 +1,11 @@
 package com.adminsys;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan("com.adminsys.dao")
 public class SpringbootShiroApplication {
 
     public static void main(String[] args) {

@@ -1,17 +1,46 @@
 package com.adminsys.Entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serializable;
+
 /**
  * @Author: qiang
  * @ClassName: PermissionEntity
- * @Description: TODO
+ * @Description: 权限表
  * @Date: 2019/11/20 下午4:01
  * @Version: 1.0
  **/
-public class PermissionEntity {
+@TableName("permission")
+public class PermissionEntity implements Serializable {
 
+    private static final long serialVersionUID = 6556179590132762063L;
+    /**
+     *  权限id
+     */
+    @TableId
     private Integer pid;
-    private String name;
+
+    /**
+     *  权限名
+     */
+    private String pname;
+
+    /**
+     *  权限地址
+     */
     private String url;
+
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
 
     public Integer getPid() {
         return pid;
@@ -19,14 +48,6 @@ public class PermissionEntity {
 
     public void setPid(Integer pid) {
         this.pid = pid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getUrl() {

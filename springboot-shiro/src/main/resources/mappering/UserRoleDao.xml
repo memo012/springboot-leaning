@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.adminsys.dao.UserRoleDao">
+
+    <resultMap id="userMap" type="UserEntity">
+        <id property="uid" column="id" />
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="roleId" column="role_id"/>
+        <collection property="roles" ofType="RoleEntity">
+            <id property="rid" column="rid"/>
+            <result property="rname" column="rname"/>
+            <collection property="permissionSet" ofType="PermissionEntity">
+                <id property="pid" column="pid"/>
+                <result property="pname" column="pname"/>
+                <result property="url" column="url"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="findByUsername" parameterType="String" resultMap="userMap" >
+        select u.*,r.*,p.*
+        from users u
+        INNER JOIN role r on u.role_id = r.rid
+        INNER JOIN permission_role pr on pr.rid = r.rid
+        INNER JOIN permission p on p.pid = pr.pid
+        where u.username = #{arg0}
+    </select>
+
+</mapper>
