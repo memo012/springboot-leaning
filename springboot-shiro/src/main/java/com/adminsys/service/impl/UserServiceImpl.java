@@ -4,6 +4,7 @@ import com.adminsys.Entity.UserEntity;
 import com.adminsys.dao.UserDao;
 import com.adminsys.dao.UserRoleDao;
 import com.adminsys.service.IUserService;
+import com.adminsys.shiro.ShiroEncrypt;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserEntity loginUser(String username, String password) {
+        password = ShiroEncrypt.encrypt(username, password);
         return userDao.selectOne(new QueryWrapper<UserEntity>().eq("username", username).eq("password", password));
     }
 

@@ -2,6 +2,7 @@ package com.adminsys.exception;
 
 import com.adminsys.util.JSONResult;
 import org.apache.shiro.ShiroException;
+import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -28,9 +29,9 @@ public class ExceptionController {
         return JSONResult.errorTokenMsg("token不存在");
     }
 
-    // 捕捉UnauthorizedException
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    @ExceptionHandler(UnauthorizedException.class)
+    // 捕捉AuthorizationException
+    @ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler(AuthorizationException.class)
     public JSONResult handle401() {
         return JSONResult.errorPermissionMsg("不具备某种权限");
     }

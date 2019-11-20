@@ -31,7 +31,7 @@ public class UserController {
     public JSONResult userLogin(@RequestParam("username") String username,@RequestParam("password") String password){
         UserEntity userEntity = iUserService.loginUser(username, password);
         if (userEntity != null) {
-            return JSONResult.ok(JWTUtil.sign(username, password));
+            return JSONResult.ok(JWTUtil.sign(username, userEntity.getPassword()));
         }
         return JSONResult.build(401, "查询为空", null);
     }
@@ -40,7 +40,7 @@ public class UserController {
     @RequestMapping(path = "/401")
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public JSONResult unauthorized() {
-        return JSONResult.errorRolesMsg("无权限");
+        return JSONResult.errorMsg("error");
     }
 
 

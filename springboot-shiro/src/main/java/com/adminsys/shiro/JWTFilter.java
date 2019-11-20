@@ -1,5 +1,6 @@
 package com.adminsys.shiro;
 
+import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,6 +66,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
             try {
                 executeLogin(request, response);
             } catch (Exception e) {
+//                throw new AuthorizationException("权限不足");
                 response401(request, response);
             }
         }

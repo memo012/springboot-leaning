@@ -1,5 +1,6 @@
 package com.adminsys.shiro;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
@@ -25,8 +26,6 @@ import java.util.Map;
  **/
 @Configuration
 public class ShiroConfig {
-
-
 
     @Bean("authRealm")
     public AuthRealm authRealm(){
